@@ -38,14 +38,10 @@ class Item(models.Model):
 
 class Key(models.Model):
 	OWNERS = (
-		('r', 'Regent'),
-		('vr', 'Vice Regent'), 
+		('r', 'President'),
+		('vr', 'Vice President'), 
 		('s', 'Scribe'), 
 		('t', 'Treasurer'), 
-		('cs', 'Corresponding Secretary'),
-		('ig', 'Inner Guard'),
-		('og', 'Outer Guard'),
-		('m', 'Marshal'),
 		('o', 'Other')
 	)
 
@@ -82,14 +78,10 @@ class Key(models.Model):
 
 class Card(models.Model):
 	OWNERS = (
-		('r', 'Regent'),
-		('vr', 'Vice Regent'), 
+		('r', 'President'),
+		('vr', 'Vice President'), 
 		('s', 'Scribe'), 
 		('t', 'Treasurer'), 
-		('cs', 'Corresponding Secretary'),
-		('ig', 'Inner Guard'),
-		('og', 'Outer Guard'),
-		('m', 'Marshal'),
 		('o', 'Other')
 	)
 
