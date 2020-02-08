@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cardactive %} active{% endblock %}
+{% block cardcarrot %} >{% endblock %}
+
+{% block content %}
+{% if perms.app.add_card %}
+    <div class="flex">
+    <a class="btn btn-primary" href="{% url 'card_new' %}" role="button">
+        <img src="{% static 'plus.svg' %}" width="27" height="27"></img>
+        Create New Card
+    </a>&nbsp;&nbsp;&nbsp;
+{% endif %}
+<form action="{% url 'card_search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search cards... ">
+</form>
+</div>
+
+<br>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Owner</th>
+        <th>Location</th>
+        <th>Actions</th>
+    </tr>
+    {% for card in object_list %}
+    <tr>
+        <td>
+            <a href="{% url 'card_detail' card.card_id %}">{{ card.card_name }}</a>
+        </td>
+        <td>{{ card.get_card_owner_display }}</td>
+        <td>{{ card.card_location }}</td>
+        <td>
+            {% if perms.app.change_card %}
+                <a href="{% url 'card_edit' card.card_id %}">Edit</a>
+            {% endif %}
+            {% if perms.app.delete_card %}
+                <a href="{% url 'card_delete' card.card_id %}">Delete</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4"><b>--- No cards to display.  Add some! ---</b></td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

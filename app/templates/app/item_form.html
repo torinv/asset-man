@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block itemactive %} active{% endblock %}
+{% block itemcarrot %} >{% endblock %}
+
+{% block content %}
+<h1>Item Entry</h1>
+<hr>
+<form method="POST">{% csrf_token %}
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td>{{ form.item_name }}</td>
+        </tr>
+        <tr>
+            <td>Current Location</td>
+            <td>:</td>
+            <td>{{ form.item_location }}</td>
+        </tr>
+        <tr>
+            <td>Quantity</td>
+            <td>:</td>
+            <td>{{ form.item_qty }}</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>:</td>
+            <td>{{ form.item_longdescription }}</td>
+        </tr>
+        <tr>
+            <td>User</td>
+            <td>:</td>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Save"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

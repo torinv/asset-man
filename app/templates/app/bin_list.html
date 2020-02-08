@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block binactive %} active{% endblock %}
+{% block bincarrot %} >{% endblock %}
+
+{% block content %}
+{% if perms.app.add_bin %}
+    <div class="flex">
+    <a class="btn btn-primary" href="{% url 'bin_new' %}" role="button">
+        <img src="{% static 'plus.svg' %}" width="27" height="27"></img>
+        Create New Bin
+    </a>&nbsp;&nbsp;&nbsp;
+{% endif %}
+<form action="{% url 'bin_search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search bins... ">
+</form>
+</div>
+
+<br>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Contents</th>
+        <th>Actions</th>
+    </tr>
+    {% for bin in object_list %}
+    <tr>
+        <td>
+            <a href="{% url 'bin_detail' bin.bin_id %}">{{ bin.bin_name }}</a>
+        </td>
+        <td>{{ bin.bin_location }}</td>
+        <td>{{ bin.bin_contents }}</td>
+        <td>
+            {% if perms.app.change_bin %}
+                <a href="{% url 'bin_edit' bin.bin_id %}">Edit</a>
+            {% endif %}
+            {% if perms.app.delete_bin %}
+                <a href="{% url 'bin_delete' bin.bin_id %}">Delete</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4"><b>--- No bins to display.  Add some! ---</b></td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

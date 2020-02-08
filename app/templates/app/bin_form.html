@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block binactive %} active{% endblock %}
+{% block bincarrot %} >{% endblock %}
+
+{% block content %}
+<h1>Bin Entry</h1>
+<hr>
+<form method="POST">{% csrf_token %}
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td>{{ form.bin_name }}</td>
+        </tr>
+        <tr>
+            <td>Current Location</td>
+            <td>:</td>
+            <td>{{ form.bin_location }}</td>
+        </tr>
+        <tr>
+            <td>Contents</td>
+            <td>:</td>
+            <td>{{ form.bin_contents }}</td>
+        </tr>
+        <tr>
+            <td>User</td>
+            <td>:</td>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Save"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

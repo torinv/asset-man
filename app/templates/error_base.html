@@ -1,0 +1,34 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <style> 
+    .flex{display: flex;}
+    #bottom{
+      position: absolute;
+      bottom: 5;
+      left: 5;
+      }
+  </style>
+
+      <title>Error</title>
+      <link rel="icon" href={% static 'rho_gamma_logo.jpg' %}>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'key_list' %}">
+      <img src="{% static  'am_logo.png' %}" width="30" height="20" alt="">
+      <b>Asset Man</b>
+      <i>Inventory Manager</i>
+    </a>
+  </nav>
+</head>
+
+<body>
+  {% block errorcontent %}{% endblock %}
+
+  <div id="bottom">
+    <a class="btn btn-info btn-sm" href="{% url 'help' %}">Help</a>
+  </div>
+</body>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block itemactive %} active{% endblock %}
+{% block itemcarrot %} >{% endblock %}
+
+{% block content %}
+<h2>Item Detail</h2>
+<hr>
+<h4><b>Name</b> : {{ object.item_name }}</h4>
+<h4><b>Location</b> : {{ object.item_location }}</h4>
+<h4><b>Quantity</b> : {{ object.item_qty }}</h4>
+<h4><b>Description</b> : {{ object.item_longdescription }}</h4>
+<hr>
+<h4><b>Created by</b> : {{ object.item_created_by }} on {{ object.item_created_time }}</h4>
+<h4><b>Last edited by</b> : 
+{% if object.item_last_edited_by != None %}
+	{{ object.item_last_edited_by }} on {{ object.item_last_edit_time }}</h4>
+{% else %}
+	none
+{% endif %}
+{% endblock %}

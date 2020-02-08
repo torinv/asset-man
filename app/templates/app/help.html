@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Help</h1>
+<hr>
+<table border="0" cellpadding="10">
+	<tr>
+		<td>Having permissions issues?  Need an administrative override for specific items?  Need access to more stuff?</td>
+		<td><a class="btn btn-primary" href="mailto:mail@mail.com">Contact the Admin</a></td>
+	</tr>
+	<tr>
+		<td>Found a bug?  Have a feature you want implemented?
+		<td><a class="btn btn-secondary" href="mailto:mail@mail.com">Contact the Developer</a></td>
+	</tr>
+	<tr>
+		<td>For the curious</td>
+		<td><a class="btn btn-info" href="{% url 'about' %}">About the software</a>
+	</tr>
+</table>
+
+{% endblock %}

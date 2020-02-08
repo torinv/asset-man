@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block keyactive %} active{% endblock %}
+{% block keycarrot %} >{% endblock %}
+
+{% block content %}
+<form action="{% url 'key_search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search keys... ">
+</form>
+</div>
+
+<h3> Key Search Results </h3>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Owner</th>
+        <th>Location</th>
+        <th>Actions</th>
+    </tr>
+    {% for key in object_list %}
+    <tr>
+        <td>
+            <a href="{% url 'key_detail' key.key_id %}">{{ key.key_name }}</a>
+        </td>
+        <td>{{ key.get_key_owner_display }}</td>
+        <td>{{ key.key_location }}</td>
+        <td>
+            <a href="{% url 'key_edit' key.key_id %}">Edit</a>
+            <a href="{% url 'key_delete' key.key_id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4"><b>--- No results found :( ---</b></td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

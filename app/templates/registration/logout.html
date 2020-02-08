@@ -1,0 +1,7 @@
+{% extends 'auth_base.html' %}
+{% load static %}
+
+{% block authcontent %}
+<h2>Logged out.  Have a nice day!</h2>
+<a class="btn btn-primary" href={% url 'login' %}> Login </a>
+{% endblock %}

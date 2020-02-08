@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block keyactive %} active{% endblock %}
+{% block keycarrot %} >{% endblock %}
+
+{% block content %}
+<h1>Key Entry</h1>
+<hr>
+<form method="POST">{% csrf_token %}
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td>{{ form.key_name }}</td>
+        </tr>
+        <tr>
+            <td>Owner</td>
+            <td>:</td>
+            <td>{{ form.key_owner }}</td>
+        </tr>
+        <tr>
+            <td>Current Location</td>
+            <td>:</td>
+            <td>{{ form.key_location }}</td>
+        </tr>
+        <tr>
+            <td>User</td>
+            <td>:</td>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Save"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

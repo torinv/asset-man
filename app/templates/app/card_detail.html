@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cardactive %} active{% endblock %}
+{% block cardcarrot %} >{% endblock %}
+
+{% block content %}
+<h2>Card Detail</h2>
+<hr>
+<h4><b>Name</b> : {{ object.card_name }}</h4>
+<h4><b>Owner</b> : {{ object.get_card_owner_display }}</h4>
+<h4><b>Location</b> : {{ object.card_location }}</h4>
+<hr>
+<h4><b>Created by</b> : {{ object.card_created_by }} on {{ object.card_created_time }}</h4>
+<h4><b>Last edited by</b> : 
+{% if object.card_last_edited_by != None %}
+	{{ object.card_last_edited_by }} on {{ object.card_last_edit_time }}</h4>
+{% else %}
+	none
+{% endif %}
+{% endblock %}

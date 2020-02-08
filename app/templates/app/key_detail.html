@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block keyactive %} active{% endblock %}
+{% block keycarrot %} >{% endblock %}
+
+{% block content %}
+<h2>Key Detail</h2>
+<hr>
+<h4><b>Name</b> : {{ object.key_name }}</h4>
+<h4><b>Owner</b> : {{ object.get_key_owner_display }}</h4>
+<h4><b>Location</b> : {{ object.key_location }}</h4>
+<hr>
+<h4><b>Created by</b> : {{ object.key_created_by }} on {{ object.key_created_time }}</h4>
+<h4><b>Last edited by</b> : 
+{% if object.key_last_edited_by != None %}
+	{{ object.key_last_edited_by }} on {{ object.key_last_edit_time }}</h4>
+{% else %}
+	none
+{% endif %}
+{% endblock %}

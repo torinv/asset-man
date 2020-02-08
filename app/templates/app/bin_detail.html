@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block binactive %} active{% endblock %}
+{% block bincarrot %} >{% endblock %}
+
+{% block content %}
+<h2>Bin Detail</h2>
+<hr>
+<h4><b>Name</b> : {{ object.bin_name }}</h4>
+<h4><b>Location</b> : {{ object.bin_location }}</h4>
+<h4><b>Contents</b> : {{ object.bin_contents }}</h4>
+<hr>
+<h4><b>Created by</b> : {{ object.bin_created_by }} on {{ object.bin_created_time }}</h4>
+<h4><b>Last edited by</b> : 
+{% if object.bin_last_edited_by != None %}
+	{{ object.bin_last_edited_by }} on {{ object.bin_last_edit_time }}</h4>
+{% else %}
+	none
+{% endif %}
+{% endblock %}

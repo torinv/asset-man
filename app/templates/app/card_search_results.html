@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cardactive %} active{% endblock %}
+{% block cardcarrot %} >{% endblock %}
+
+{% block content %}
+<form action="{% url 'card_search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search cards... ">
+</form>
+</div>
+
+<h3> Card Search Results </h3>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Owner</th>
+        <th>Location</th>
+        <th>Actions</th>
+    </tr>
+    {% for card in object_list %}
+    <tr>
+        <td>
+            <a href="{% url 'card_detail' card.card_id %}">{{ card.card_name }}</a>
+        </td>
+        <td>{{ card.get_card_owner_display }}</td>
+        <td>{{ card.card_location }}</td>
+        <td>
+            <a href="{% url 'card_edit' card.card_id %}">Edit</a>
+            <a href="{% url 'card_delete' card.card_id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4"><b>--- No results found :( ---</b></td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

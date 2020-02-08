@@ -1,0 +1,66 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+      <title>PG Asset Manager</title>
+      <link rel="icon" href={% static 'rho_gamma_logo.jpg' %}>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <style> 
+    .flex{display: flex;}
+    #bottom{
+      position: absolute;
+      bottom: 5;
+      left: 5;
+      }
+  </style>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'key_list' %}">
+      <img src="{% static  'am_logo.png' %}" width="30" height="20" alt="">
+      <b>Asset Man</b>
+      <i>Inventory Manager</i>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <span class="nav-link"> Hello, {{ user.username }}! </span>
+        </li>
+        <li class="nav-item{% block keyactive %}{% endblock %}">
+          <a class="nav-link" href="{% url 'key_list' %}" <span class="sr-only">{% block keycarrot %}{% endblock %} Keys</span></a>
+        </li>
+        <li class="nav-item{% block binactive %}{% endblock %}">
+          <a class="nav-link" href="{% url 'bin_list' %}" <span class="sr-only">{% block bincarrot %}{% endblock %} Bins</span></a>
+        </li>
+        <li class="nav-item{% block itemactive %}{% endblock %}">
+          <a class="nav-link" href="{% url 'item_list' %}" <span class="sr-only">{% block itemcarrot %}{% endblock %} Items</span></a>
+        </li>
+        <li class="nav-item{% block cardactive %}{% endblock %}">
+          <a class="nav-link" href="{% url 'card_list' %}" Cards <span class="sr-only">{% block cardcarrot %}{% endblock %} Cards</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-danger" href="{% url 'logout' %}" role="button">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav><br>
+</head>
+
+<body>
+  {% if user.is_authenticated %}
+    {% block content %}{% endblock %}
+  {% endif %}
+
+  <div id="bottom">
+    <a class="btn btn-info btn-sm" href="{% url 'help' %}">Help</a>
+  </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

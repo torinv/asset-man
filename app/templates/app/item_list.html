@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block itemactive %} active{% endblock %}
+{% block itemcarrot %} >{% endblock %}
+
+{% block content %}
+{% if perms.app.add_item %}
+    <div class="flex">
+    <a class="btn btn-primary" href="{% url 'item_new' %}" role="button">
+        <img src="{% static 'plus.svg' %}" width="27" height="27"></img>
+        Create New Item
+    </a>&nbsp;&nbsp;&nbsp;
+{% endif %}
+<form action="{% url 'item_search_results' %}" method="get">
+  <input name="q" type="text" placeholder="Search items... ">
+</form>
+</div>
+
+<br>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+    </tr>
+    {% for item in object_list %}
+    <tr>
+        <td>
+            <a href="{% url 'item_detail' item.item_id %}">{{ item.item_name }}</a>
+        </td>
+        <td>{{ item.item_location }}</td>
+        <td>{{ item.item_qty }}</td>
+        <td>
+            {% if perms.app.change_item %}
+                <a href="{% url 'item_edit' item.item_id %}">Edit</a>
+            {% endif %}
+            {% if perms.app.delete_item %}
+                <a href="{% url 'item_delete' item.item_id %}">Delete</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4"><b>--- No items to display.  Add some! ---</b></td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
