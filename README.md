@@ -5,6 +5,7 @@ Asset Man is a simple asset/inventory management software written in Python/Djan
 
 ## Features
 * Four categories of items, each with unique fields
+* A release note model for the developer to communicate with admins, only visible through the admin console
 * User authentication
 * Simple default set of database models that can be modified and expanded
 * User permissions that allow admins to tailor who can add/edit/delete/view objects
